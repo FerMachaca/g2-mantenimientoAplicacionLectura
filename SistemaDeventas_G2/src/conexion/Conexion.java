@@ -9,6 +9,7 @@ public class Conexion {
     //conexion local
     public static Connection conectar() {
         try {
+            //contraseña: wiston123
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/bd_sistema_ventas", "root", "wiston123");
             return cn;
         } catch (SQLException e) {

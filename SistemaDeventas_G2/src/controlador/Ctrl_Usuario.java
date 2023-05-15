@@ -23,6 +23,13 @@ public class Ctrl_Usuario {
         boolean respuesta = false;
         Connection cn = Conexion.conectar();
         try {
+            if (!validarContrasena(objeto.getPassword())) {
+                JOptionPane.showMessageDialog(null, "La contraseña no es segura. "
+                        + "Debe tener al menos una letra en mayúscula, una letra en minúscula,"
+                        + " un número y una longitud de al menos 8 caracteres.");
+                return false;
+            }
+            
             PreparedStatement consulta = cn.prepareStatement("insert into tb_usuario values(?,?,?,?,?,?,?)");
             consulta.setInt(1, 0);//id
             consulta.setString(2, objeto.getNombre());
@@ -135,5 +142,26 @@ public class Ctrl_Usuario {
             System.out.println("Error al eliminar usuario: " + e);
         }
         return respuesta;
+    }
+    
+    public boolean validarContrasena(String contrasena) {
+    // Verificar que la contraseña tenga al menos una letra en mayúscula, una letra en minúscula, un número y una longitud de al menos 8 caracteres
+        boolean tieneMayuscula = false;
+        boolean tieneMinuscula = false;
+        boolean tieneNumero = false;
+        boolean longitudCorrecta = contrasena.length() >= 8;
+
+        for (int i = 0; i < contrasena.length(); i++) {
+            char c = contrasena.charAt(i);
+            if (Character.isUpperCase(c)) {
+                tieneMayuscula = true;
+            } else if (Character.isLowerCase(c)) {
+                tieneMinuscula = true;
+            } else if (Character.isDigit(c)) {
+                tieneNumero = true;
+            }
+        }
+
+        return tieneMayuscula && tieneMinuscula && tieneNumero && longitudCorrecta;
     }
 }
