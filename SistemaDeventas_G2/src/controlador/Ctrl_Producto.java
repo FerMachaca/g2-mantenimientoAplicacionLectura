@@ -23,8 +23,21 @@ public class Ctrl_Producto {
             PreparedStatement consulta = cn.prepareStatement("insert into tb_producto values(?,?,?,?,?,?,?,?)");
             consulta.setInt(1, 0);//id
             consulta.setString(2, objeto.getNombre());
-            consulta.setInt(3, objeto.getCantidad());
-            consulta.setDouble(4, objeto.getPrecio());
+            /*AGREGAR UNA SECCION DE CODIGO QUE VALIDE EL PRECIO Y LA CANTIDAD DEL PRODUCTO*/
+            
+            if (objeto.getCantidad() > 0) {
+                consulta.setInt(3, objeto.getCantidad());
+            } else {
+                System.out.println("Error al guardar");
+                return false;
+            }
+            
+            if (objeto.getPrecio() > 0) {
+                consulta.setDouble(4, objeto.getPrecio());
+            } else {
+                System.out.println("Error al guardar");
+                return false;
+            }
             consulta.setString(5, objeto.getDescripcion());
             consulta.setInt(6, objeto.getPorcentajeIva());
             consulta.setInt(7, objeto.getIdCategoria());
