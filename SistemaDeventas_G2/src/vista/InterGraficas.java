@@ -53,7 +53,7 @@ public class InterGraficas extends javax.swing.JInternalFrame {
 
         jButton_Guardar.setBackground(new java.awt.Color(0, 204, 204));
         jButton_Guardar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton_Guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/historial1.png"))); // NOI18N
+        jButton_Guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/historial1_rende.png"))); // NOI18N
         jButton_Guardar.setText("Graficar Ventas");
         jButton_Guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -62,7 +62,7 @@ public class InterGraficas extends javax.swing.JInternalFrame {
         });
         getContentPane().add(jButton_Guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, 230, 50));
 
-        jLabel_wallpaper.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondo3.jpg"))); // NOI18N
+        jLabel_wallpaper.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondo3_rende.jpg"))); // NOI18N
         getContentPane().add(jLabel_wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 280));
 
         pack();

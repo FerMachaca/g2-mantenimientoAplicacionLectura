@@ -24,7 +24,7 @@ import javax.swing.JOptionPane;
 
 public class Reportes {
 //Se define como una constante "src/img/header.jpg" del url del imagen para reutilizar el codigo y ahorrar lineas.
-private static final String Header_imagen= "src/img/header.jpg";
+private static final String Header_imagen= "src/img/header_rende.jpg";
 
     /* ********************************************************************
     * metodo para crear reportes de los clientes registrados en el sistema
