@@ -6,6 +6,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import modelo.Usuario;
+import shared.Constants;
 
 
 public class FrmLogin extends javax.swing.JFrame {
@@ -14,7 +15,7 @@ public class FrmLogin extends javax.swing.JFrame {
         initComponents();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-        this.setTitle("Login - SISTEMA DE VENTAS");
+        this.setTitle(Constants.TITLE_LOGIN);
         this.setSize(new Dimension(700, 500));
     }
 
@@ -280,10 +281,10 @@ public class FrmLogin extends javax.swing.JFrame {
                 menu.setVisible(true);
                 this.dispose();
             } else {
-                JOptionPane.showMessageDialog(null, "Usuario o Clave Incorrectos");
+                JOptionPane.showMessageDialog(null, Constants.ERROR_LOGIN);
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Ingrese sus credenciales");
+            JOptionPane.showMessageDialog(null, Constants.EMPTY_LOGIN);
         }
     }
 }
