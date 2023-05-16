@@ -21,7 +21,7 @@ public class FrmLogin extends javax.swing.JFrame {
 
     @Override
     public Image getIconImage() {
-        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("img/ventas.png"));
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("img/ventas_rende.png"));
         return retValue;
     }
 
@@ -64,7 +64,7 @@ public class FrmLogin extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(242, 150, 55));
         jLabel3.setText("Calidad y variedad en un solo lugar");
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/carrito1.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/carrito1_rende.png"))); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -116,11 +116,10 @@ public class FrmLogin extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel2.setBackground(new java.awt.Color(239, 199, 26));
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SistemaDeventas1/src/img/user-orange_25327.png"))); // NOI18N
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/user-orange_25327 (smal).png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/user-orange_25327 (smal)_rende.png"))); // NOI18N
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/password.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/password_rende.png"))); // NOI18N
 
         txt_usuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txt_usuario.addActionListener(new java.awt.event.ActionListener() {
@@ -186,7 +185,7 @@ public class FrmLogin extends javax.swing.JFrame {
                     .addComponent(txt_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(45, 45, 45)
                 .addComponent(jButton_IniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addContainerGap(219, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 350, 500));
