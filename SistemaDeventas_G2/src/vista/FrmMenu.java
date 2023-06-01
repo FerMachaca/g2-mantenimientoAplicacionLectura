@@ -130,7 +130,7 @@ public class FrmMenu extends javax.swing.JFrame {
 
         jMenuItem_actualizar_stock.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jMenuItem_actualizar_stock.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/nuevo_rende.png"))); // NOI18N
-        jMenuItem_actualizar_stock.setText(Constants.MENU_UPDATE_STOCK_STRING)
+        jMenuItem_actualizar_stock.setText(Constants.MENU_UPDATE_STOCK_STRING);
         jMenuItem_actualizar_stock.setPreferredSize(new java.awt.Dimension(200, 30));
         jMenuItem_actualizar_stock.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
