@@ -12,33 +12,6 @@ import modelo.Cliente;
 public class Ctrl_Cliente {
 
     /**
-     * **************************************************
-     * metodo para guardar un nuevo clientw
-     * **************************************************
-     */
-    public boolean guardar(Cliente objeto) {
-        boolean respuesta = false;
-        Connection cn = Conexion.conectar();
-        try {
-            PreparedStatement consulta = cn.prepareStatement("insert into tb_cliente values(?,?,?,?,?,?,?)");
-            consulta.setInt(1, 0);//id
-            consulta.setString(2, objeto.getNombre());
-            consulta.setString(3, objeto.getApellido());
-            consulta.setString(4, objeto.getCedula());
-            consulta.setString(5, objeto.getTelefono());
-            consulta.setString(6, objeto.getDireccion());
-            consulta.setInt(7, objeto.getEstado());
-            if (consulta.executeUpdate() > 0) {
-                respuesta = true;
-            }
-            cn.close();
-        } catch (SQLException e) {
-            System.out.println("Error al guardar cliente: " + e);
-        }
-        return respuesta;
-    }
-
-    /**
      * ********************************************************************
      * metodo para consultar si el producto ya esta registrado en la BBDD
      * ********************************************************************

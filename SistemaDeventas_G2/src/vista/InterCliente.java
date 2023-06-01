@@ -1,8 +1,12 @@
 package vista;
 
+import conexion.Conexion;
 import controlador.Ctrl_Cliente;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import modelo.Cliente;
 
@@ -109,9 +113,11 @@ public class InterCliente extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_GuardarActionPerformed
-
+        
+        Connection cn = Conexion.conectar();
         Cliente cliente = new Cliente();
         Ctrl_Cliente controlCliente = new Ctrl_Cliente();
+        boolean respuesta = false;
 
         if (!txt_nombre.getText().isEmpty() && !txt_apellido.getText().isEmpty() && !txt_cedula.getText().isEmpty()) {
             //JOptionPane.showMessageDialog(null, "Correcto");
@@ -124,8 +130,25 @@ public class InterCliente extends javax.swing.JInternalFrame {
                 cliente.setTelefono(txt_telefono.getText().trim());
                 cliente.setDireccion(txt_direccion.getText().trim());
                 cliente.setEstado(1);
+                
+                try {
+                    PreparedStatement consulta = cn.prepareStatement("insert into tb_cliente values(?,?,?,?,?,?,?)");
+                    consulta.setInt(1, 0);//id
+                    consulta.setString(2, cliente.getNombre());
+                    consulta.setString(3, cliente.getApellido());
+                    consulta.setString(4, cliente.getCedula());
+                    consulta.setString(5, cliente.getTelefono());
+                    consulta.setString(6, cliente.getDireccion());
+                    consulta.setInt(7, cliente.getEstado());
+                    if (consulta.executeUpdate() > 0) {
+                        respuesta = true;
+                    }
+                    cn.close();
+                } catch (SQLException e) {
+                    System.out.println("Error al guardar cliente: " + e);
+        }
 
-                if (controlCliente.guardar(cliente)) {
+                if (respuesta = true) {
                     JOptionPane.showMessageDialog(null, "Registro Guardado");
                     txt_nombre.setBackground(Color.green);
                     txt_apellido.setBackground(Color.green);

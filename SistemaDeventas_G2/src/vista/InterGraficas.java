@@ -30,6 +30,8 @@ public class InterGraficas extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jButton_Guardar = new javax.swing.JButton();
         jLabel_wallpaper = new javax.swing.JLabel();
+        jDateChooser_fecha_inicio = new com.toedter.calendar.JDateChooser();
+        jDateChooser_fecha_fin = new com.toedter.calendar.JDateChooser();
 
         setClosable(true);
         setIconifiable(true);
@@ -49,7 +51,7 @@ public class InterGraficas extends javax.swing.JInternalFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Fecha Fin:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, 100, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 100, -1));
 
         jButton_Guardar.setBackground(new java.awt.Color(0, 204, 204));
         jButton_Guardar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -64,6 +66,8 @@ public class InterGraficas extends javax.swing.JInternalFrame {
 
         jLabel_wallpaper.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondo3_rende.jpg"))); // NOI18N
         getContentPane().add(jLabel_wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 280));
+        getContentPane().add(jDateChooser_fecha_inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, -1, -1));
+        getContentPane().add(jDateChooser_fecha_fin, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -82,6 +86,8 @@ public class InterGraficas extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_Guardar;
+    private com.toedter.calendar.JDateChooser jDateChooser_fecha_fin;
+    private com.toedter.calendar.JDateChooser jDateChooser_fecha_inicio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
