@@ -10,6 +10,19 @@ import modelo.Producto;
 
 
 public class Ctrl_Producto {
+    /**
+     * **************************************************
+     * metodo para validar Cantidad-Precio producto
+     * **************************************************
+     */
+
+    private boolean validarCantidadPrecio(Producto objeto) {
+    if (objeto.getCantidad() <= 0 || objeto.getPrecio() <= 0) {
+        System.out.println("Error al guardar");
+        return false;
+    }
+    return true;
+}
      /**
      * **************************************************
      * metodo para guardar un nuevo producto
@@ -24,20 +37,12 @@ public class Ctrl_Producto {
             consulta.setInt(1, 0);//id
             consulta.setString(2, objeto.getNombre());
             /*AGREGAR UNA SECCION DE CODIGO QUE VALIDE EL PRECIO Y LA CANTIDAD DEL PRODUCTO*/
-            
-            if (objeto.getCantidad() > 0) {
-                consulta.setInt(3, objeto.getCantidad());
-            } else {
-                System.out.println("Error al guardar");
+            if (!validarCantidadPrecio(objeto)) {
                 return false;
             }
-            
-            if (objeto.getPrecio() > 0) {
-                consulta.setDouble(4, objeto.getPrecio());
-            } else {
-                System.out.println("Error al guardar");
-                return false;
-            }
+
+            consulta.setInt(3, objeto.getCantidad());
+            consulta.setDouble(4, objeto.getPrecio());
             consulta.setString(5, objeto.getDescripcion());
             consulta.setInt(6, objeto.getPorcentajeIva());
             consulta.setInt(7, objeto.getIdCategoria());
@@ -92,6 +97,9 @@ public class Ctrl_Producto {
 
             PreparedStatement consulta = cn.prepareStatement("update tb_producto set nombre=?, cantidad = ?, precio = ?, descripcion= ?, porcentajeIva = ?, idCategoria = ?, estado = ? where idProducto ='" + idProducto + "'");
             consulta.setString(1, objeto.getNombre());
+            if (!validarCantidadPrecio(objeto)) {
+                return false;
+            }
             consulta.setInt(2, objeto.getCantidad());
             consulta.setDouble(3, objeto.getPrecio());
             consulta.setString(4, objeto.getDescripcion());
