@@ -10,6 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -20,7 +22,7 @@ public class InterGestionarCategoria extends javax.swing.JInternalFrame {
 
     private int idCategoria;
 
-    public InterGestionarCategoria() {
+    public InterGestionarCategoria() throws SQLException {
         initComponents();
         this.setSize(new Dimension(600, 400));
         this.setTitle("Gestionar Categorias");
@@ -134,7 +136,11 @@ public class InterGestionarCategoria extends javax.swing.JInternalFrame {
             if (controlCategoria.actualizar(categoria, idCategoria)) {
                 JOptionPane.showMessageDialog(null, "Categoria Actulizada");
                 txt_descripcion.setText("");
-                this.CargarTablaCategorias();
+                try {
+                    this.CargarTablaCategorias();
+                } catch (SQLException ex) {
+                    Logger.getLogger(InterGestionarCategoria.class.getName()).log(Level.SEVERE, null, ex);
+                }
             } else {
                 JOptionPane.showMessageDialog(null, "Error al actualizar Categoria");
             }
@@ -152,7 +158,11 @@ public class InterGestionarCategoria extends javax.swing.JInternalFrame {
             if (!controlCategoria.eliminar(idCategoria)) {
                 JOptionPane.showMessageDialog(null, "Categoria Eliminada");
                 txt_descripcion.setText("");
-                this.CargarTablaCategorias();
+                try {
+                    this.CargarTablaCategorias();
+                } catch (SQLException ex) {
+                    Logger.getLogger(InterGestionarCategoria.class.getName()).log(Level.SEVERE, null, ex);
+                }
             } else {
                 JOptionPane.showMessageDialog(null, "Error al Eliminar Categoria");
             }
@@ -181,34 +191,54 @@ public class InterGestionarCategoria extends javax.swing.JInternalFrame {
      * metodo para mostrar todos las categorias registradas
      * *****************************************************
      */
-    private void CargarTablaCategorias() {
+    private void CargarTablaCategorias() throws SQLException {
         Connection con = Conexion.conectar();
+        DefaultTableModel model = createTableModel();
+        loadTableData(con, model);
+        setupTable(model);
+        setupTableClickListener(model);
+        con.close();
+    }
+
+    //Este método crea y devuelve un nuevo objeto DefaultTableModel.
+    //Establece las columnas "Categoria" y "Descripcion" en el modelo de la tabla y lo retorna.
+    private DefaultTableModel createTableModel() {
         DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Categoria");
+        model.addColumn("Descripcion");
+        return model;
+    }
+
+    //Este método se encarga de cargar los datos de la tabla de la base de datos.
+    //Toma una conexión a la base de datos y un objeto DefaultTableModel como parámetros.
+    //Ejecuta una consulta SQL para obtener los datos de la tabla de categorías y los agrega al modelo de la tabla.
+    private void loadTableData(Connection con, DefaultTableModel model) {
         String sql = "select idCategoria, descripcion, estado from tb_categoria";
-        Statement st;
         try {
-            st = con.createStatement();
+            Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
-            InterGestionarCategoria.jTable_categorias = new JTable(model);
-            InterGestionarCategoria.jScrollPane1.setViewportView(InterGestionarCategoria.jTable_categorias);
-
-            model.addColumn("Categoria");
-            model.addColumn("Descripcion");
-            //model.addColumn("estado");
-
             while (rs.next()) {
-                Object fila[] = new Object[3];
-                for (int i = 0; i < 3; i++) {
-                    fila[i] = rs.getObject(i + 1);
-                }
+                Object fila[] = new Object[2];
+                fila[0] = rs.getObject(1);
+                fila[1] = rs.getObject(2);
                 model.addRow(fila);
             }
-            con.close();
         } catch (SQLException e) {
             System.out.println("Error al llenar la tabla categorias: " + e);
         }
-        //evento para obtener campo al cual el usuario da click
-        //y obtener la interfaz que mostrara la informacion general
+    }
+
+    //Este método configura la tabla de categorías en la interfaz de usuario.
+    //Crea una nueva instancia de JTable utilizando el modelo de tabla proporcionado y establece esta instancia 
+    private void setupTable(DefaultTableModel model) {
+        InterGestionarCategoria.jTable_categorias = new JTable(model);
+        InterGestionarCategoria.jScrollPane1.setViewportView(InterGestionarCategoria.jTable_categorias);
+    }
+
+    //Este método establece un escucha de eventos de clic en la tabla de categorías. 
+    //Cuando se hace clic en una fila de la tabla, extrae el valor de la columna 0 (idCategoria) 
+    //de esa fila y lo utiliza para llamar al método EnviarDatosCategoriaSeleccionada().
+    private void setupTableClickListener(DefaultTableModel model) {
         jTable_categorias.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
