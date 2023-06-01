@@ -32,7 +32,7 @@ public class InterGestionarVentas extends javax.swing.JInternalFrame {
         this.CargarTablaVentas();
 
         //insertar imagen en nuestro JLabel
-        ImageIcon wallpaper = new ImageIcon("src/img/fondo3.jpg");
+        ImageIcon wallpaper = new ImageIcon("src/img/fondo3_rende.jpg");
         Icon icono = new ImageIcon(wallpaper.getImage().getScaledInstance(900, 500, WIDTH));
         jLabel_wallpaper.setIcon(icono);
         this.repaint();

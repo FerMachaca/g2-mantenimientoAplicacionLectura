@@ -24,29 +24,37 @@ import javax.swing.JOptionPane;
 
 public class Reportes {
 //Se define como una constante "src/img/header.jpg" del url del imagen para reutilizar el codigo y ahorrar lineas.
-private static final String Header_imagen= "src/img/header.jpg";
+private static final String Header_imagen= "src/img/header_rende.jpg";
 
     /* ********************************************************************
     * metodo para crear reportes de los clientes registrados en el sistema
     *********************************************************************** */
+
+    private void agregarHeader(Document documento) throws DocumentException, IOException {
+        Image header = Image.getInstance(Header_imagen);
+        header.scaleToFit(650, 1000);
+        header.setAlignment(Chunk.ALIGN_CENTER);
+        documento.add(header);
+    }
+    private void agregarParrafo(Document documento,String nombre) throws DocumentException {
+        Paragraph parrafo = new Paragraph();
+        parrafo.setAlignment(Paragraph.ALIGN_CENTER);
+        parrafo.setFont(FontFactory.getFont("Tahoma", 18, Font.BOLD, BaseColor.DARK_GRAY));
+        parrafo.add("Reporte de "+ nombre+"\n\n");
+        documento.add(parrafo);
+    }
+    
     public void ReportesClientes() {
         Document documento = new Document();
         try {
             String ruta = System.getProperty("user.home");
             PdfWriter.getInstance(documento, new FileOutputStream(ruta + "/Desktop/Reporte_Clientes.pdf"));
-            Image header = Image.getInstance(Header_imagen);
-            header.scaleToFit(650, 1000);
-            header.setAlignment(Chunk.ALIGN_CENTER);
-            //formato al texto
-            Paragraph parrafo = new Paragraph();
-            parrafo.setAlignment(Paragraph.ALIGN_CENTER);
-            parrafo.setFont(FontFactory.getFont("Tahoma", 18, Font.BOLD, BaseColor.DARK_GRAY));
-            parrafo.add("Reporte de Clientes \n\n");
-
+   
+            //se agrega el header y parrafo
             documento.open();
-            //agregamos los datos
-            documento.add(header);
-            documento.add(parrafo);
+            agregarHeader(documento);
+            agregarParrafo(documento,"Cientes");        
+            
 
             PdfPTable tabla = new PdfPTable(5);
             tabla.addCell("Codigo");
@@ -95,19 +103,10 @@ private static final String Header_imagen= "src/img/header.jpg";
         try {
             String ruta = System.getProperty("user.home");
             PdfWriter.getInstance(documento, new FileOutputStream(ruta + "/Desktop/Reporte_Productos.pdf"));
-            Image header = Image.getInstance(Header_imagen);
-            header.scaleToFit(650, 1000);
-            header.setAlignment(Chunk.ALIGN_CENTER);
-            //formato al texto
-            Paragraph parrafo = new Paragraph();
-            parrafo.setAlignment(Paragraph.ALIGN_CENTER);
-            parrafo.setFont(FontFactory.getFont("Tahoma", 18, Font.BOLD, BaseColor.DARK_GRAY));
-            parrafo.add("Reporte de Productos \n\n");
 
             documento.open();
-            //agregamos los datos
-            documento.add(header);
-            documento.add(parrafo);
+            agregarHeader(documento);
+            agregarParrafo(documento,"Producto");    
             
             float[] columnsWidths = {3, 5, 4, 5, 7, 5, 6};
 
@@ -165,19 +164,11 @@ private static final String Header_imagen= "src/img/header.jpg";
         try {
             String ruta = System.getProperty("user.home");
             PdfWriter.getInstance(documento, new FileOutputStream(ruta + "/Desktop/Reporte_Categorias.pdf"));
-            Image header = Image.getInstance(Header_imagen);
-            header.scaleToFit(650, 1000);
-            header.setAlignment(Chunk.ALIGN_CENTER);
-            //formato al texto
-            Paragraph parrafo = new Paragraph();
-            parrafo.setAlignment(Paragraph.ALIGN_CENTER);
-            parrafo.setFont(FontFactory.getFont("Tahoma", 18, Font.BOLD, BaseColor.DARK_GRAY));
-            parrafo.add("Reporte de Categorias \n\n");
 
+            //se agrega el header y parrafo
             documento.open();
-            //agregamos los datos
-            documento.add(header);
-            documento.add(parrafo);
+            agregarHeader(documento);
+            agregarParrafo(documento,"Categorias"); 
 
             PdfPTable tabla = new PdfPTable(3);
             tabla.addCell("Codigo");
@@ -222,19 +213,12 @@ private static final String Header_imagen= "src/img/header.jpg";
         try {
             String ruta = System.getProperty("user.home");
             PdfWriter.getInstance(documento, new FileOutputStream(ruta + "/Desktop/Reporte_Ventas.pdf"));
-            Image header = Image.getInstance(Header_imagen);
-            header.scaleToFit(650, 1000);
-            header.setAlignment(Chunk.ALIGN_CENTER);
-            //formato al texto
-            Paragraph parrafo = new Paragraph();
-            parrafo.setAlignment(Paragraph.ALIGN_CENTER);
-            parrafo.setFont(FontFactory.getFont("Tahoma", 18, Font.BOLD, BaseColor.DARK_GRAY));
-            parrafo.add("Reporte de Ventas \n\n");
-
+           
+            //se agrega el header y parrafo
             documento.open();
-            //agregamos los datos
-            documento.add(header);
-            documento.add(parrafo);
+            agregarHeader(documento);
+            agregarParrafo(documento,"Ventas");    
+
             
             float[] columnsWidths = {3, 9, 4, 5, 3};
 
